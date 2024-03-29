@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import  {  useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addTodo,
@@ -11,8 +11,8 @@ function TodoApp() {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
   const inputRef = useRef();
-//   const [completed,setCompleted] = useState(0)
-//   const [uncompleted,setunCompleted] = useState(0)
+  const [completed,setCompleted] = useState(0)
+  const [uncompleted,setunCompleted] = useState(0)
 // const completedStatic=0;
 // const uncompletedStatic=0;
 
@@ -21,7 +21,7 @@ function TodoApp() {
         dispatch(addTodo(text))
     inputRef.current.value = "";
     // completedStatic++;
-    // setCompleted(completedStatic++)
+    setCompleted(completed+1)
     }else{
         alert("Todo bo'sh bo'lishi mumkin emas")
     }
@@ -29,12 +29,12 @@ function TodoApp() {
   const handleToggleTodoComplete = (id) => {
     dispatch(toggleTodoComplete(id));
 //    uncompletedStatic++;
-    // setunCompleted(uncompleted++)
+    setunCompleted(uncompleted+1)
   };
   const handleRemoveTodo = (id) => {
     dispatch(removeTodo(id));
     // completedStatic--;
-    // setCompleted(completedStatic--)
+    setCompleted(completed-1)
   };
 
 
@@ -55,7 +55,7 @@ function TodoApp() {
         </button>
       </div>
       <div>
-        <h2 className="text-xl text-white mb-5">Tasks - {0}</h2>
+        <h2 className="text-xl text-white mb-5">Tasks - {completed}</h2>
         <ul className="text-[#9E78CF] flex flex-col gap-4 max-h-[300px] overflow-y-auto">
           {todos.map((todo, index) =>
             todo.completed === false ? (
@@ -86,7 +86,7 @@ function TodoApp() {
         </ul>
       </div>
       <div>
-        <h2 className="text-xl text-white my-5">Done - {0}</h2>
+        <h2 className="text-xl text-white my-5">Done - {completed}</h2>
         <ul className="flex flex-col gap-4 max-h-[300px] overflow-y-auto">
           {todos.map((todo, index) =>
             todo.completed === true ? (
