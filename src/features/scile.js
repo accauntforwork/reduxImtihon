@@ -17,6 +17,10 @@ const todoSlice = createSlice({
       const todoIndex = state.findIndex((todo) => todo.id === action.payload);
       state[todoIndex].completed = !state[todoIndex].completed;
     },
+    toggleTodoNotComplete: (state, action) => {
+      const todoIndex = state.findIndex((todo) => todo.id === action.payload);
+      state[todoIndex].completed = !state[todoIndex].completed;
+    },
     removeTodo: (state, action) => {
       for (let i = 0; i < state.length; i++) {
         if (state[i].id === action.payload) {
@@ -27,6 +31,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, toggleTodoComplete, removeTodo } =
+export const { addTodo, toggleTodoComplete, removeTodo,toggleTodoNotComplete } =
   todoSlice.actions;
 export default todoSlice.reducer;
